@@ -2,8 +2,12 @@
 <?php 
 require_once("./config/db.php");
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
-    
+    $insert = $conn -> prepare("INSERT INTO 
+    (title, author) 
+    VALUES(:title, :author)");
+    $insert -> bindParam(":title", $_POST["title"]);
+    $insert -> bindParam(":author", $_POST["author"]);
+    $insert -> execute();
 }
 ?>
 
@@ -17,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 
 <body>
-    <h1>Añadir libro</h1>
+    <h1>Añadir libros</h1>
     <p><a href="view_books.php">Listado de libros</a></p>
     <?php
 
@@ -30,6 +34,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <label for="author">Autor</label>
         <input type="text" name="author" id="author" required>
+
+        <button type="submit">Añadir libro</button>
 
     </form>
 </body>
