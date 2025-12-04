@@ -16,7 +16,7 @@ if(isset($_GET["action"]) && $_GET["action"] == "delete"){
     $delete = $conn -> prepare("DELETE FROM books WHERE id = :id");
     $delete -> bindParam(":id", $_GET["id"]);
     if($delete -> execute()){
-    echo "Inserciñon realizada correctamente";
+    echo "Inserción realizada correctamente";
     }
 }
 }
