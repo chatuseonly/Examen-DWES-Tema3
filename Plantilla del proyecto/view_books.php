@@ -6,8 +6,6 @@ $librosOrdenadosPorTitulo = $conn -> query("SELECT * FROM books ORDER BY title A
 $librosOrdenadosPorAutor = $conn -> query("SELECT * FROM books ORDER BY author ASC");
 
 
-var_dump($librosOrdenadosPorTitulo);
-var_dump($librosOrdenadosPorAutor);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -41,10 +39,7 @@ var_dump($librosOrdenadosPorAutor);
                 <td><?= $title["title"] ?></td>
                 <td><?= $title["author"] ?></td>
                 <td>
-                    <form action="delete_book" method="get">
-                        <input type="hidden" name="id" value="<?= $title["id"]?>">
-                        <button type="submit">Borrar</button>
-                    </form>
+                    <a href="./delete_book.php?id=<?= $title["id"] ?>">Eliminar libro</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -68,10 +63,7 @@ var_dump($librosOrdenadosPorAutor);
                 <td><?= htmlspecialchars($autor["author"])?></td>
                 <td><?= htmlspecialchars($autor["title"])?></td>
                 <td>
-                    <form action="delete_book.php" method="get">
-                        <input type="hidden" name="id" value="">
-                        <button type="submit">Borrar</button>
-                    </form>
+                    <a href="./delete_book.php?id=<?= $autor["id"] ?>">Eliminar libro</a>
                 </td>
             </tr>
             <?php endforeach; ?>
