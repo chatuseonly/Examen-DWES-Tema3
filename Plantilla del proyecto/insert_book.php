@@ -1,3 +1,12 @@
+
+<?php 
+require_once("./config/db.php");
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,8 +20,6 @@
     <h1>Añadir libro</h1>
     <p><a href="view_books.php">Listado de libros</a></p>
     <?php
-
-    
 
     // Imprimir mensaje de éxito si se ha guardado el libro
     echo "Libro guardado con exito";
