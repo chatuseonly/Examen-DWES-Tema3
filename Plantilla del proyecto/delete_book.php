@@ -3,6 +3,7 @@ require_once("./config/db.php");
 
 $select = $conn -> prepare("SELECT * FROM books WHERE id = :id");
 $select -> bindParam(":id", $_GET["id"]);
+$select -> execute();
 
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
@@ -11,11 +12,12 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     }
 
 
-if(isset($_GET["action"]) && $_GET["action"] == "borrar"){
+if(isset($_GET["action"]) && $_GET["action"] == "delete"){
     $delete = $conn -> prepare("DELETE FROM books WHERE id = :id");
     $delete -> bindParam(":id", $_GET["id"]);
-    $delete -> execute();
+    if($delete -> execute()){
     header("Location: view_books.php");
+    }
 }
 }
 
@@ -47,6 +49,6 @@ if(isset($_GET["action"]) && $_GET["action"] == "borrar"){
     <p class="author"><?= $sel["author"]?></p>
    <?php endforeach; ?>
     <a href="view_books.php">Cancelar</a>
-    <a href="delete_book.php?id=<?= $select["id"]?>&action=delete"></a>
+    <a href="delete_book.php?id=<?= $sel["id"]?>&action=delete">Borrar libro</a>
 </body>
 </html>
