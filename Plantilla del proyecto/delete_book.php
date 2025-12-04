@@ -14,6 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 if(isset($_GET["action"]) && $_GET["action"] == "borrar"){
     $delete = $conn -> prepare("DELETE FROM books WHERE id = :id");
     $delete -> bindParam(":id", $_GET["id"]);
+    $delete -> execute();
     header("Location: view_books.php");
 }
 }
