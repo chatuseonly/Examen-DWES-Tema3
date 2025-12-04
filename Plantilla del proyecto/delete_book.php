@@ -1,7 +1,7 @@
 <?php 
 require_once("./config/db.php");
 
-$select = $conn -> prepare("SELECT * FROM books WHERE id = :Id");
+$select = $conn -> prepare("SELECT * FROM books WHERE id = :id");
 $select -> bindParam(":id", $_GET["id"]);
 
 

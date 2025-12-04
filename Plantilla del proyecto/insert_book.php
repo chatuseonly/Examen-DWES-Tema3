@@ -2,12 +2,14 @@
 <?php 
 require_once("./config/db.php");
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $insert = $conn -> prepare("INSERT INTO 
+    $insert = $conn -> prepare("INSERT INTO books
     (title, author) 
     VALUES(:title, :author)");
     $insert -> bindParam(":title", $_POST["title"]);
     $insert -> bindParam(":author", $_POST["author"]);
-    $insert -> execute();
+    if($insert -> execute()){
+        echo "Libro guardado con éxito";
+    }
 }
 ?>
 
@@ -31,10 +33,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
         <label for="title">Título</label>
         <input type="text" name="title" id="title" required>
-
+        <br>
         <label for="author">Autor</label>
         <input type="text" name="author" id="author" required>
-
+        <br>
         <button type="submit">Añadir libro</button>
 
     </form>
